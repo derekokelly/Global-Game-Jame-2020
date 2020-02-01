@@ -428,6 +428,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 2014117085}
+    - target: {fileID: 3990087455873001706, guid: 3856e8216de234e40b98870f180d27ff,
+        type: 3}
+      propertyPath: runSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5074590836445625619, guid: 3856e8216de234e40b98870f180d27ff,
         type: 3}
       propertyPath: m_Constraints
