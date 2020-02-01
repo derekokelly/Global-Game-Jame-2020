@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BedRoomDoor.cs" />
     <Compile Include="Assets\CharacterController2D.cs" />
+    <Compile Include="Assets\LevelChanger.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\Test.cs" />
     <None Include="Assets\Free 2D Prison Game Assets By Adarsh S\README.txt" />
