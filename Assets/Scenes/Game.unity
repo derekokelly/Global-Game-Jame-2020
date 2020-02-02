@@ -3080,8 +3080,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flowchart
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6834910115681815751, guid: 6f8450ed9d7d99c4f85173525e3ed2b0, type: 3}
+    m_RemovedComponents: [{fileID: 6834910115681815751, guid: 6f8450ed9d7d99c4f85173525e3ed2b0,
+        type: 3}]
   m_SourcePrefab: {fileID: 100100000, guid: 6f8450ed9d7d99c4f85173525e3ed2b0, type: 3}
 --- !u!114 &669816347 stripped
 MonoBehaviour:
@@ -3354,7 +3354,7 @@ MonoBehaviour:
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
-  extendPrevious: 0
+  extendPrevious: 1
   fadeWhenDone: 1
   waitForClick: 1
   stopVoiceover: 1
@@ -5370,7 +5370,7 @@ PrefabInstance:
     - target: {fileID: 207968731485758336, guid: 62afe21f273972b4d83afc6f243476f8,
         type: 3}
       propertyPath: block
-      value: Journal Entry 5 (Jori)
+      value: Journal Entry 4 (Jori)
       objectReference: {fileID: 0}
     - target: {fileID: 207968731485758336, guid: 62afe21f273972b4d83afc6f243476f8,
         type: 3}
