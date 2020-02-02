@@ -12,11 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 100f;
 
     bool jump;
+    public Animator animator;
+
 
     // Update is called once per frame
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (Input.GetButtonDown("Jump"))
         {

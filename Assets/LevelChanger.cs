@@ -11,27 +11,29 @@ public class LevelChanger : MonoBehaviour
 
     public GameObject Player;
     public GameObject Door;
+    public string type;
+    public Camera oldCam, newCam;
 
     private Coroutine lastRoutine;
 
-    public Camera[] cameras;
+    //public Camera[] cameras;
     private int currentCameraIndex;
 
 
     void Start()
     {
-        currentCameraIndex = 0;
+        //currentCameraIndex = 0;
 
-        for (int i = 1; i < cameras.Length; i++)
-        {
-            cameras[i].gameObject.SetActive(false);
-        }
+        //for (int i = 1; i < cameras.Length; i++)
+        //{
+        //    cameras[i].gameObject.SetActive(false);
+        //}
 
-        if (cameras.Length > 0)
-        {
-            cameras[0].gameObject.SetActive(true);
-            Debug.Log("Camera with name: " + cameras[0].name + ", is now enabled");
-        }
+        //if (cameras.Length > 0)
+        //{
+        //    cameras[0].gameObject.SetActive(true);
+        //    Debug.Log("Camera with name: " + cameras[0].name + ", is now enabled");
+        //}
     }
 
     // Update is called once per frame
@@ -49,7 +51,10 @@ public class LevelChanger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            lastRoutine = StartCoroutine(Teleport());
+            if (type == "door")
+                lastRoutine = StartCoroutine(GoThroughDoor());
+            else
+                lastRoutine = StartCoroutine(GoPastBound());
         }
     }
 
@@ -61,42 +66,53 @@ public class LevelChanger : MonoBehaviour
         }
     }
 
-    IEnumerator Teleport()
+    IEnumerator GoThroughDoor()
     {
         while (true)
         {
             if (Input.GetKeyDown("z"))
             {
-                animator.SetBool("New Bool", true);
-                yield return new WaitForSeconds(1);
-                Player.transform.position = new Vector2(Door.transform.position.x, Door.transform.position.y - 1.5f);
-                NextCamera();
+                StartCoroutine("ChangeRoom");
                 break;
             }
             yield return null;
         }
     }
 
+    IEnumerator GoPastBound()
+    {
+        StartCoroutine("ChangeRoom");
+        yield return null;
+    }
+
+    IEnumerator ChangeRoom()
+    {
+        animator.SetBool("New Bool", true);
+        yield return new WaitForSeconds(1);
+        Player.transform.position = new Vector2(Door.transform.position.x, Door.transform.position.y - 1.5f);
+        NextCamera();
+    }
+
     void NextCamera()
     {
-        currentCameraIndex++;
-        Debug.Log("Z button has been pressed. Switching to the next camera");
-        Debug.Log(currentCameraIndex);
-        Debug.Log(cameras.Length);
-        if (currentCameraIndex < cameras.Length)
-        {
-            Debug.Log("In if");
-            cameras[currentCameraIndex - 1].gameObject.SetActive(false);
-            cameras[currentCameraIndex].gameObject.SetActive(true);
-            Debug.Log("Camera with name: " + cameras[currentCameraIndex].name + ", is now enabled");
-        }
-        else
-        {
-            Debug.Log("In else");
-            cameras[currentCameraIndex - 1].gameObject.SetActive(false);
-            currentCameraIndex = 0;
-            cameras[currentCameraIndex].gameObject.SetActive(true);
-            Debug.Log("Camera with name: " + cameras[currentCameraIndex].name + ", is now enabled");
-        }
+        newCam.gameObject.SetActive(true);
+        oldCam.gameObject.SetActive(false);
+
+
+        //currentCameraIndex++;
+        //Debug.Log("Z button has been pressed. Switching to the next camera");
+        //if (currentCameraIndex < cameras.Length)
+        //{
+        //    cameras[currentCameraIndex - 1].gameObject.SetActive(false);
+        //    cameras[currentCameraIndex].gameObject.SetActive(true);
+        //    Debug.Log("Camera with name: " + cameras[currentCameraIndex].name + ", is now enabled");
+        //}
+        //else
+        //{
+        //    cameras[currentCameraIndex - 1].gameObject.SetActive(false);
+        //    currentCameraIndex = 0;
+        //    cameras[currentCameraIndex].gameObject.SetActive(true);
+        //    Debug.Log("Camera with name: " + cameras[currentCameraIndex].name + ", is now enabled");
+        //}
     }
 }
